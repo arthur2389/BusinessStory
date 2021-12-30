@@ -8,13 +8,15 @@ class AssetFlowAction
 {
 public:
     AssetFlowAction() {};
-    AssetFlowAction(int order)
-        : m_order{order} {} 
+    AssetFlowAction(int order);
     virtual void update_assets(Assets& assets)=0;
-    int get_order() {return m_order;}
+    int get_order() const; 
+
+protected:
+    double percent_of(double percent, double value) {}
 
 private:
-    int m_order;
+    int m_order{0};
     
 };
 

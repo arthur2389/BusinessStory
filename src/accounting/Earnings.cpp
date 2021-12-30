@@ -6,6 +6,6 @@ Earnings::Earnings(double return_on_capital): m_return_on_capital{return_on_capi
 
 void Earnings::update_assets(Assets& assests)
 {
-    double earnings = (m_return_on_capital / 100) * assests.total_assests();
+    double earnings = percent_of(assests.total_assests(), m_return_on_capital);
     assests.add_equity(earnings);
 }
