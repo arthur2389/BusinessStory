@@ -7,10 +7,10 @@
 class AssetFlowAction
 {
 public:
-    AssetFlowAction();
+    AssetFlowAction() {};
     AssetFlowAction(int order)
         : m_order{order} {} 
-    virtual void update_assets(Assets& assets);
+    virtual void update_assets(Assets& assets)=0;
     int get_order() {return m_order;}
 
 private:

@@ -1,37 +1,37 @@
 #include "Assets.h"
 
-Assets::Assets(int equity, int debt)
+Assets::Assets(double equity, double debt)
     : m_equity{equity}, m_debt{debt} {}
 
 Assets::Assets(Assets& source) : Assets{source.get_equity(), source.get_debt()} {}
 
-int Assets::get_equity() const
+double Assets::get_equity() const
 {
     return m_equity;
 }
 
-int Assets::get_debt() const
+double Assets::get_debt() const
 {
     return m_debt;
 }
 
-int Assets::total_assests() const 
+double Assets::total_assests() const 
 {
     return m_debt + m_equity;
 }
 
-int Assets::equity_to_debt_ratio() const 
+double Assets::equity_to_debt_ratio() const 
 {
     return m_equity / m_debt;
 }
 
-int Assets::add_equity(int add_to_equity)
+double Assets::add_equity(double add_to_equity)
 {
     m_equity += add_to_equity;
     return m_equity;
 }
 
-int Assets::add_debt(int add_to_debt)
+double Assets::add_debt(double add_to_debt)
 {
     m_debt += add_to_debt;
     return m_debt;

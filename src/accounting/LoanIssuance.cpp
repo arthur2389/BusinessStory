@@ -2,7 +2,7 @@
 	
 LoanIssuance::LoanIssuance() {}
 
-LoanIssuance::LoanIssuance(int issued_loan): m_issued_loan{issued_loan} {}
+LoanIssuance::LoanIssuance(double issued_loan): m_issued_loan{issued_loan} {}
 
 void LoanIssuance::update_assets(Assets& assets)
 {

@@ -10,10 +10,10 @@ class Earnings: public AssetFlowAction
 	public:
 
 		Earnings();
-		Earnings(int return_on_capital);
+		Earnings(double return_on_capital);
 		void update_assets(Assets& assets);
 
 	private:
-	    int m_return_on_capital;
+	    double m_return_on_capital;
 };
 #endif

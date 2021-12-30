@@ -8,10 +8,10 @@ class LoanIssuance: public AssetFlowAction
 {
 	public:
 		LoanIssuance();
-		LoanIssuance(int issued_loan);
+		LoanIssuance(double issued_loan);
 		void update_assets(Assets& assets);
 
 	private:
-		int m_issued_loan;
+		double m_issued_loan;
 };
 #endif
