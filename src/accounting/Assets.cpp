@@ -1,4 +1,4 @@
-#include "Assets.hpp"
+#include "Assets.h"
 
 Assets::Assets(int equity, int debt)
     : m_equity{equity}, m_debt{debt} {}

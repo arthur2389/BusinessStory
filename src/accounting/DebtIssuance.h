@@ -1,7 +1,8 @@
-#ifndef DEBTISSUANCE_HPP
-#define DEBTISSUANCE_HPP
+#ifndef DEBTISSUANCE_H
+#define DEBTISSUANCE_H
+#pragma once
 
-#include "AssetFlowAction.hpp"
+#include "AssetFlowAction.h"
 
 class DebtIssuance: public AssetFlowAction
 {
@@ -14,4 +15,4 @@ private:
     int m_issued_debt;
 };
 
-#endif // DEBTISSUANCE_HPP
+#endif // DEBTISSUANCE_H

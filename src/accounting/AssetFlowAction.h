@@ -1,7 +1,8 @@
-#ifndef ASSETFLOWACTION_HPP
-#define ASSETFLOWACTION_HPP
+#ifndef ASSETFLOWACTION_H
+#define ASSETFLOWACTION_H
+#pragma once
 
-#include "Assets.hpp"
+#include "Assets.h"
 
 class AssetFlowAction
 {
@@ -17,4 +18,4 @@ private:
     
 };
 
-#endif // ASSETFLOWACTION_HPP
+#endif // ASSETFLOWACTION_H

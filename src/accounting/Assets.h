@@ -1,5 +1,6 @@
-#ifndef ASSESTS_HPP
-#define ASSESTS_HPP
+#ifndef ASSESTS_H
+#define ASSESTS_H
+#pragma once
 
 class Assets
 {
@@ -20,4 +21,4 @@ private:
     int m_debt;
 };
 
-#endif // ASSESTS_HPP
+#endif // ASSESTS_H
