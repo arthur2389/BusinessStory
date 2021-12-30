@@ -13,7 +13,7 @@ public:
     int get_order() const; 
 
 protected:
-    double percent_of(double percent, double value) {}
+    double percent_of(double value, double percent) {}
 
 private:
     int m_order{0};

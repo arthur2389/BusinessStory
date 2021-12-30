@@ -8,4 +8,5 @@ void Earnings::update_assets(Assets& assests)
 {
     double earnings = percent_of(assests.total_assests(), m_return_on_capital);
     assests.add_equity(earnings);
+    assests.update_latest_earnings(earnings);
 }

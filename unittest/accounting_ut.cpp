@@ -7,7 +7,7 @@
 
 int main(int argc, char **argv)
 {
-	Assets comp_A{843};
+	Assets comp_A{843, 0};
 	Assets comp_B{265, 670};
 
 	std::cout << "Company A has " << comp_A.get_equity() << " In equity and no debt" << std::endl;

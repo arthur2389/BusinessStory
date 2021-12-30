@@ -6,6 +6,6 @@ DebtInterest::DebtInterest(double interest_rate): m_interest_rate{interest_rate}
 
 void DebtInterest::update_assets(Assets& assests)
 {
-    double interest = - (m_interest_rate / 100) * assests.get_debt();
+    double interest = - percent_of(assests.get_debt(), m_interest_rate);
     assests.add_equity(interest);
 }
