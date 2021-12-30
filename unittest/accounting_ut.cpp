@@ -3,7 +3,7 @@
 #include "AssetFlowAction.h"
 #include "Assets.h"
 #include "Earnings.h"
-#include "DebtIssuance.h"
+#include "LoanIssuance.h"
 
 int main(int argc, char **argv)
 {
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 	// 								  Earnings{-5}};
 
 	assest_flows_A.push_back(Earnings{5});
-	assest_flows_A.push_back(DebtIssuance{500});
+	assest_flows_A.push_back(LoanIssuance{500});
 
 	for (auto af: assest_flows_A)
 	{

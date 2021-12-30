@@ -1,16 +1,17 @@
 #ifndef LOANISSUANCE_H
 #define LOANISSUANCE_H
 #pragma once
-	
-class LoanIssuance  
+
+#include "AssetFlowAction.h"
+
+class LoanIssuance: public AssetFlowAction  
 {
-	private:
-
 	public:
-
 		LoanIssuance();
 		LoanIssuance(int issued_loan);
-		~LoanIssuance();
+		void update_assets(Assets& assets);
 
+	private:
+		int m_issued_loan;
 };
 #endif
