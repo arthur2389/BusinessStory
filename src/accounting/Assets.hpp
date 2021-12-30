@@ -7,13 +7,11 @@ public:
     Assets(int equity, int debt=0); 
     Assets(Assets& source);
 
-    # Getters
-    int get_equity();
-    int get_debt();
-    int total_assests();
-    int equity_to_debt_ratio();
+    int get_equity() const;
+    int get_debt() const;
+    int total_assests() const;
+    int equity_to_debt_ratio() const;
 
-    # Setters
     int add_equity(int add_to_equity);
     int add_debt(int add_to_debt);
     

@@ -6,12 +6,12 @@
 class DebtInterest: public AssetFlowAction
 {
 public:
+    DebtInterest();
     DebtInterest(int interest_rate);
     void update_assets(Assets& assets);
     
 private:
     int m_interest_rate;
-    
 };
 
 #endif // DEBTINTEREST_HPP
