@@ -4,12 +4,12 @@
 	
 #include "AssetFlowAction.h"
 
-class DividendPayment : AssetFlowAction 
+class DividendPayment :public AssetFlowAction 
 {
 	public:
 		DividendPayment();
 		DividendPayment(double percent_of_assets);
-		void update_assets(Assets& assets);
+		virtual void update_assets(Assets& assets) override;
 
 	private:
 		double m_percent_of_equity;

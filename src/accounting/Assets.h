@@ -2,6 +2,8 @@
 #define ASSESTS_H
 #pragma once
 
+static const double MILLION{1000000};
+
 class Assets
 {
 public:
@@ -23,8 +25,6 @@ public:
     int add_num_of_shares(int num_of_shares);
 
 private:
-
-    const static double MILLION = 1000000;
 
     double m_equity;
     double m_debt;

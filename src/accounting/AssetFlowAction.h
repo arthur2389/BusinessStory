@@ -9,11 +9,12 @@ class AssetFlowAction
 public:
     AssetFlowAction() {};
     AssetFlowAction(int order);
+    virtual ~AssetFlowAction();
     virtual void update_assets(Assets& assets)=0;
     int get_order() const; 
 
 protected:
-    double percent_of(double value, double percent) {}
+    double percent_of(double value, double percent);
 
 private:
     int m_order{0};

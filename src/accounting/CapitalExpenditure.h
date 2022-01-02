@@ -10,7 +10,7 @@ class CapitalExpenditure: public AssetFlowAction
 
 		CapitalExpenditure();
 		CapitalExpenditure(double capex);
-		void update_assets(Assets& assets);
+		virtual void update_assets(Assets& assets) override;
 
 	private:
 		double m_capex;

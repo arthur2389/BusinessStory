@@ -1,0 +1,9 @@
+add_library(accounting_lib
+AssetFlowAction.cpp
+Assets.cpp
+Earnings.cpp
+LoanIssuance.cpp
+DividendPayment.cpp
+DebtInterest.cpp
+CapitalExpenditre.cpp
+ShareBuyBack.cpp)

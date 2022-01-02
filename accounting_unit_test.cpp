@@ -1,9 +1,12 @@
 #include <iostream>
 #include <vector>
+#include <memory>
 #include "AssetFlowAction.h"
 #include "Assets.h"
 #include "Earnings.h"
 #include "LoanIssuance.h"
+#include "DividendPayment.h"
+#include "CapitalExpenditure.h"
 
 int main(int argc, char **argv)
 {
@@ -14,11 +17,15 @@ int main(int argc, char **argv)
 	std::cout << "Company B has " << comp_B.get_equity() << \
 		" In equity and " << comp_B.get_debt() << " In debt" << std::endl;
 
-	std::vector<AssetFlowAction*> assest_flows_A { new Earnings{15}, 
-												   new LoanIssuance{200}, 	
-												   new Earnings{3}};	  
+	comp_A.update_stock_fields(15, 1000000);
 
-	for (auto af: assest_flows_A)
+	std::vector<std::unique_ptr<AssetFlowAction>> assest_flows_A;
+	assest_flows_A.push_back(std::make_unique<LoanIssuance>(200));
+	assest_flows_A.push_back(std::make_unique<Earnings>(7));
+	assest_flows_A.push_back(std::make_unique<DividendPayment>(3));
+	assest_flows_A.push_back(std::make_unique<CapitalExpenditure>(300));
+
+	for (auto& af: assest_flows_A)
 	{
 		af->update_assets(comp_A);
 	}

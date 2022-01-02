@@ -9,7 +9,7 @@ class LoanIssuance: public AssetFlowAction
 	public:
 		LoanIssuance();
 		LoanIssuance(double issued_loan);
-		void update_assets(Assets& assets);
+		virtual void update_assets(Assets& assets) override;
 
 	private:
 		double m_issued_loan;

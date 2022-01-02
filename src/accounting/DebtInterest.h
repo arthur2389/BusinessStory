@@ -10,7 +10,7 @@ class DebtInterest: public AssetFlowAction
 
 		DebtInterest();
 		DebtInterest(double interest_rate);
-		void update_assets(Assets& assets);
+		virtual void update_assets(Assets& assets) override;
 
 	private:
 		double m_interest_rate;
