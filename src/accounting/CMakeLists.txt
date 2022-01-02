@@ -5,5 +5,7 @@ Earnings.cpp
 LoanIssuance.cpp
 DividendPayment.cpp
 DebtInterest.cpp
-CapitalExpenditre.cpp
-ShareBuyBack.cpp)
+CapitalExpenditure.cpp
+ShareBuyBack.cpp
+DebtRepayment.cpp
+)

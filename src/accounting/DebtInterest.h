@@ -1,5 +1,5 @@
-#ifndef SRC/ACCOUNTING/DEBTINTEREST_H
-#define SRC/ACCOUNTING/DEBTINTEREST_H
+#ifndef DEBTINTEREST_H
+#define DEBTINTEREST_H
 #pragma once
 
 #include "AssetFlowAction.h"

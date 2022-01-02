@@ -9,5 +9,7 @@ int AssetFlowAction::get_order() const
 
 double AssetFlowAction::percent_of(double value, double percent)
 {
-    return (percent / 100) * value;
+    return (percent / 100.0) * value;
 }
+
+AssetFlowAction::~AssetFlowAction() {}

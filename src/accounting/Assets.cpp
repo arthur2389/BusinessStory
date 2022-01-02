@@ -1,7 +1,7 @@
 #include "Assets.h"
 
 Assets::Assets(double equity, double debt)
-    : m_equity{equity}, m_debt{debt} {}
+    : m_equity{equity}, m_debt{debt}, m_total_assets{equity + debt} {}
 
 Assets::Assets(Assets& source) : Assets{source.get_equity(), source.get_debt()} {}
 
@@ -29,7 +29,7 @@ double Assets::get_debt() const
 
 double Assets::total_assests() const 
 {
-    return m_debt + m_equity;
+    return m_total_assets;
 }
 
 double Assets::equity_to_debt_ratio() const 
@@ -51,14 +51,27 @@ double Assets::get_latest_stock_price() const
     return (m_latest_earnings / m_num_of_shares) * m_stock_price_to_earnings;
 }
 
+double Assets::get_latest_earnings() const
+{
+    return m_latest_earnings;
+}
+
 double Assets::add_equity(double add_to_equity)
 {
     m_equity += add_to_equity;
+    m_total_assets += add_to_equity;
     return m_equity;
 }
 
 double Assets::add_debt(double add_to_debt)
 {
     m_debt += add_to_debt;
+    m_total_assets += add_to_debt;
     return m_debt;
+}
+
+int Assets::add_num_of_shares(int num_of_shares)
+{
+    m_num_of_shares += num_of_shares;
+    return m_num_of_shares;
 }
