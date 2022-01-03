@@ -1,10 +1,8 @@
 #include "DebtRepayment.h"  
 	
-DebtRepayment::DebtRepayment(){}
-
-DebtRepayment::DebtRepayment(double repayment_ammont): m_repayment_ammount{repayment_ammont} {}
-
 void DebtRepayment::update_assets(Assets& assets)
 {
-    assets.add_debt(-m_repayment_ammount);
+    double repayment = std::min(m_paid_out_of_total_debt[m_profile], 
+                                m_paid_out_of_equity[m_profile]);
+    assets.add_debt(-repayment);
 }

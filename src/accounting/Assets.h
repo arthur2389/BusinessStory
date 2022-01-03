@@ -10,20 +10,15 @@ public:
     Assets(double equity, double debt); 
     Assets(Assets& source);
 
-    void update_stock_fields(int stock_price_to_earnings, int num_of_shares=-1);
-    void update_latest_earnings(double latest_earnings);
-
     double get_equity() const;
     double get_debt() const;
-    int get_num_of_shares() const;
     double total_assests() const;
     double equity_to_debt_ratio() const;
-    double get_latest_stock_price() const;
     double get_latest_earnings() const;
 
     double add_equity(double add_to_equity);
     double add_debt(double add_to_debt);
-    int add_num_of_shares(int num_of_shares);
+    void update_latest_earnings(double latest_earnings);
 
 private:
 

@@ -1,6 +1,8 @@
 #include "AssetFlowAction.h"
 
-AssetFlowAction::AssetFlowAction(int order): m_order{order} {} 
+AssetFlowAction::AssetFlowAction() {}
+
+AssetFlowAction::AssetFlowAction(AssetFlowAction::PROFILE profile): m_profile{profile} {}
 
 int AssetFlowAction::get_order() const
 {

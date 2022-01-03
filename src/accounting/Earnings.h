@@ -10,10 +10,14 @@ class Earnings: public AssetFlowAction
 	public:
 
 		Earnings();
-		Earnings(double return_on_capital);
+		Earnings(double return_on_capital,
+                 double debt_interest, 
+                 double tax_perc);
 		virtual void update_assets(Assets& assets) override;
 
 	private:
 	    double m_return_on_capital;
+		double m_debt_interest;
+		double m_tax_perc;
 };
 #endif

@@ -1,4 +1,4 @@
-add_library(accounting_lib
+add_library(accounting_lib STATIC
 AssetFlowAction.cpp
 Assets.cpp
 Earnings.cpp
