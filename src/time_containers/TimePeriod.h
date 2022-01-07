@@ -1,3 +1,7 @@
+// Business Story Application
+// By Arthur Farber 2022
+// https://github.com/arthur2389/BusinessStory
+
 #ifndef TIMEPERIOD_H
 #define TIMEPERIOD_H
 #pragma once
@@ -26,7 +30,7 @@ class TimePeriod
 		// Getters
 		std::string& get_return_on_capital_list();
 		std::string& get_return_on_capital_avarage();
-		
+
 
 
 		std::vector<std::shared_ptr<FiscalYear>> build_years();
