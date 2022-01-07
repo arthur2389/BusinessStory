@@ -1,3 +1,7 @@
+// Business Story Application
+// By Arthur Farber 2022
+// https://github.com/arthur2389/BusinessStory
+
 #ifndef ASSETFLOWACTION_H
 #define ASSETFLOWACTION_H
 #pragma once

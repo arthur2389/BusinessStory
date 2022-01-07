@@ -1,3 +1,7 @@
+// Business Story Application
+// By Arthur Farber 2022
+// https://github.com/arthur2389/BusinessStory
+
 #include "FiscalYear.h"  
 	
 FiscalYear::FiscalYear(double interest_rate, double tax_rate):

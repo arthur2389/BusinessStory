@@ -1,3 +1,7 @@
+// Business Story Application
+// By Arthur Farber 2022
+// https://github.com/arthur2389/BusinessStory
+
 #ifndef DEBTREPAYMENT_H
 #define DEBTREPAYMENT_H
 #pragma once
