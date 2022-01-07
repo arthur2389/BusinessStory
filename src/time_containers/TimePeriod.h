@@ -9,38 +9,62 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <tuple>
 #include "FiscalYear.h"
 
-static const std::string PROFILES[]{"None", "Low", "Medium", "High"}	
+static const std::string PROFILES[]{"None", "Low", "Medium", "High"};	
+// Taking advantage of the fact the all fiscal numbers are ammounts (positive)
+static const double UNDEFINED = -1;
 
 class TimePeriod  
 {
 	public:
 
-		TimePeriod() {}; 
+		enum FIELD_STATUS {
+			VALID = 0, 
+			NOT_A_NUMBER = 1,
+			NEGATIVE_NUMBER = 2, 
+			BAD_PROFILE_NAME = 3								
+		};
+
+		TimePeriod() {}
+		~TimePeriod() {}
 
 		// Setters 
-		void set_retrun_on_capital(std::string& earnings_list);
-		void set_retrun_on_capital(std::string& earnings_avarage, std::string& earnings_std_deviation);
-		void set_capital_distribution_profile(std::string& capital_distribution_profile);
-		void set_debt_issuance_profile(std::string& debt_issuance_profile);
-		void set_debt_repayment_profile(std::string& debt_repayment_profile);
-		void set_paid_in_capital_profile(std::string& paid_in_capital_profile);
+		FIELD_STATUS set_tax_rate(std::string& tax_rate);
+		FIELD_STATUS set_debt_interest_rate(std::string& debt_interest_rate);
+		FIELD_STATUS set_return_on_capital(std::string& roc_list) {};
+		FIELD_STATUS set_return_on_capital(std::string& roc_average,
+								           std::string& roc_std_deviation);
+		FIELD_STATUS set_capital_distribution_profile(std::string& capital_distribution_profile);
+		FIELD_STATUS set_debt_issuance_profile(std::string& debt_issuance_profile);
+		FIELD_STATUS set_debt_repayment_profile(std::string& debt_repayment_profile);
+		FIELD_STATUS set_paid_in_capital_profile(std::string& paid_in_capital_profile);
 
 		// Getters
-		std::string& get_return_on_capital_list();
+		std::string& get_tax_rate();
+		std::string& get_debt_interest_rate();
+		std::string& get_return_on_capital_list() {};
 		std::string& get_return_on_capital_avarage();
-
-
+		std::string& get_return_on_capital_std_deviation();
+		std::string& get_capital_distribution_profile();
+		std::string& get_debt_issuance_profile();
+		std::string& get_debt_repayment_profile();
+		std::string& get_paid_in_capital_profile();
 
 		std::vector<std::shared_ptr<FiscalYear>> build_years();
 
-		~TimePeriod() {}
-
 	private:
-		std::string m_retrun_on_capital_list{""};
-		std::string m_return_on_capital_avarage{""};
-		std::string m_return_on_capital_std_deviation{""};
+		bool is_defined(std::tuple<std::string, double> field);
+		std::tuple<FIELD_STATUS, double> convert_to_valid_numeric(std::string& as_string);
+		// ToDo implement function
+		FIELD_STATUS assest_profile_name(std::string& pname) {return VALID};
+
+		std::tuple<std::string, double> m_tax_rate{"", UNDEFINED};
+		std::tuple<std::string, double> m_debt_interest_rate{"", UNDEFINED};
+		std::tuple<std::string, std::vector<double>> m_retrun_on_capital_list{"", {UNDEFINED}};
+		std::tuple<std::string, double> m_return_on_capital_avarage{"", UNDEFINED};
+		std::tuple<std::string, double> m_return_on_capital_std_deviation{"", UNDEFINED};
 		std::string m_capital_distribution_profile{PROFILES[0]};
 		std::string m_debt_issuence_profile{PROFILES[0]};
 		std::string m_debt_repayment{PROFILES[0]};

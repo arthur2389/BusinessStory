@@ -46,6 +46,7 @@ void FiscalYear::go_through(Assets& assets)
 {
     for (auto& af: m_asset_flows)
     {
+        // ToDo push this for update as well
         af->update_assets(assets);
         m_year_10k.equity = assets.get_equity();
         m_year_10k.debt = assets.get_debt();
