@@ -1,5 +1,7 @@
 #include "PaidInCapital.h"  
 
+PaidInCapital::PaidInCapital(PROFILE profile): AssetFlowAction{profile} {}
+
 void PaidInCapital::update_assets(Assets& assets)
 {
     // The paid in capital is corelated to the total assets of the company

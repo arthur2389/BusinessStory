@@ -14,7 +14,6 @@ public:
     double get_debt() const;
     double total_assests() const;
     double equity_to_debt_ratio() const;
-    double get_latest_earnings() const;
 
     double add_equity(double add_to_equity);
     double add_debt(double add_to_debt);
@@ -27,7 +26,6 @@ private:
     double m_total_assets;
     int m_num_of_shares{0};
     int m_stock_price_to_earnings{10}; 
-    double m_latest_earnings{0.0};
 };
 
 #endif // ASSESTS_H

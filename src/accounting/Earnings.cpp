@@ -18,5 +18,4 @@ void Earnings::update_assets(Assets& assests)
     ebit -= tax;
     // Here - sticking with ebit term to avoid adding another varable        
     assests.add_equity(ebit);
-    assests.update_latest_earnings(ebit);
 }

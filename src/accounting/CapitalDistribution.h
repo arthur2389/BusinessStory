@@ -8,12 +8,13 @@ class CapitalDistribution : public AssetFlowAction
 {
 	public:
 
+		CapitalDistribution(PROFILE profile);
 		virtual void update_assets(Assets& assets) override;
 
 	private:
-		std::map<AssetFlowAction::PROFILE, double> m_paid_of_equity = {{P_LOW,    2.0},
-				 						                               {P_MEDIUM, 8.0},
-    								  				                   {P_HIGH,   11.0}};
+		std::map<PROFILE, double> m_paid_of_equity = {{P_LOW,    2.0},
+				 		                              {P_MEDIUM, 8.0},
+    						 	                      {P_HIGH,   11.0}};
 
 };
 #endif

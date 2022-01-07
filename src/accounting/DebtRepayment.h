@@ -9,7 +9,7 @@ class DebtRepayment : public AssetFlowAction
 {
 
 	public:
-
+		DebtRepayment(PROFILE profile);
 		virtual void update_assets(Assets& assets) override;
 
 	private:

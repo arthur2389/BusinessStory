@@ -9,10 +9,10 @@ class AssetFlowAction
 {
 public:
 
-    typedef enum PROFILE{
-        P_LOW = 0,
-        P_MEDIUM = 1,
-        P_HIGH = 2
+    enum PROFILE {
+        P_LOW = 1,
+        P_MEDIUM = 2,
+        P_HIGH = 3
     };
 
     AssetFlowAction(PROFILE profile);
