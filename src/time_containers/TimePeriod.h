@@ -36,12 +36,14 @@ class TimePeriod
 		FIELD_STATUS set_return_on_capital(std::string& roc_list) {};
 		FIELD_STATUS set_return_on_capital(std::string& roc_average,
 								           std::string& roc_std_deviation);
+		FIELD_STATUS set_num_of_years(std::string&num_of_years);
 		FIELD_STATUS set_capital_distribution_profile(std::string& capital_distribution_profile);
 		FIELD_STATUS set_debt_issuance_profile(std::string& debt_issuance_profile);
 		FIELD_STATUS set_debt_repayment_profile(std::string& debt_repayment_profile);
 		FIELD_STATUS set_paid_in_capital_profile(std::string& paid_in_capital_profile);
 
 		// Getters
+		// ToDo implement getters
 		std::string& get_tax_rate();
 		std::string& get_debt_interest_rate();
 		std::string& get_return_on_capital_list() {};
@@ -62,12 +64,13 @@ class TimePeriod
 
 		std::tuple<std::string, double> m_tax_rate{"", UNDEFINED};
 		std::tuple<std::string, double> m_debt_interest_rate{"", UNDEFINED};
+		std::tuple<std::string, int> m_num_years_in_period{"", UNDEFINED};
 		std::tuple<std::string, std::vector<double>> m_retrun_on_capital_list{"", {UNDEFINED}};
 		std::tuple<std::string, double> m_return_on_capital_avarage{"", UNDEFINED};
 		std::tuple<std::string, double> m_return_on_capital_std_deviation{"", UNDEFINED};
 		std::string m_capital_distribution_profile{PROFILES[0]};
 		std::string m_debt_issuence_profile{PROFILES[0]};
-		std::string m_debt_repayment{PROFILES[0]};
-		std::string m_paid_in_capital{PROFILES[0]};
+		std::string m_debt_repayment_profile{PROFILES[0]};
+		std::string m_paid_in_capital_profile{PROFILES[0]};
 };
 #endif

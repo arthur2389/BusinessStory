@@ -31,7 +31,7 @@ class FiscalYear
 		};
 
 		FiscalYear(double interest_rate, double tax_rate);
-		void set_earnings(double return_on_capital);
+		void set_return_on_capital(double return_on_capital);
 		void set_debt_issuance(std::string& profile);
 		void set_paid_in_capital(std::string& profile);
 		void set_debt_repayment(std::string& profile);

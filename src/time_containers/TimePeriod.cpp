@@ -42,6 +42,18 @@ TimePeriod::FIELD_STATUS TimePeriod::set_return_on_capital(std::string& roc_aver
     return status_avg;
 }                                                           
 
+TimePeriod::FIELD_STATUS TimePeriod::set_num_of_years(std::string& number_of_years)
+{
+    TimePeriod::FIELD_STATUS status; 
+    double value;
+    std::tie(status, value) = convert_to_valid_numeric(number_of_years);
+    if (status != VALID) return status;
+
+    // ToDo solve the int issue
+    m_debt_interest_rate = std::make_tuple(number_of_years, int(value));
+    return status;
+}
+
 TimePeriod::FIELD_STATUS TimePeriod::set_capital_distribution_profile(std::string& capital_distribution_profile)
 {
     TimePeriod::FIELD_STATUS status = assest_profile_name(capital_distribution_profile);
@@ -65,7 +77,7 @@ TimePeriod::FIELD_STATUS TimePeriod::set_debt_repayment_profile(std::string& deb
     TimePeriod::FIELD_STATUS status = assest_profile_name(debt_repayment_profile);
     if (status != VALID) return status;
 
-    m_debt_repayment = debt_repayment_profile;
+    m_debt_repayment_profile = debt_repayment_profile;
     return status;
 }
 
@@ -74,8 +86,28 @@ TimePeriod::FIELD_STATUS TimePeriod::set_paid_in_capital_profile(std::string& pa
     TimePeriod::FIELD_STATUS status = assest_profile_name(paid_in_capital_profile);
     if (status != VALID) return status;
 
-    m_paid_in_capital = paid_in_capital_profile;
+    m_paid_in_capital_profile = paid_in_capital_profile;
     return status;
+}
+
+std::vector<std::shared_ptr<FiscalYear>> TimePeriod::build_years()
+{
+    std::vector<std::shared_ptr<FiscalYear>> years;
+    int i;
+
+    for (i = 0; i < std::get<1>(m_num_years_in_period); ++i)
+    {
+        std::shared_ptr<FiscalYear> y = std::make_shared<FiscalYear>(std::get<1>(m_debt_interest_rate),
+                                                                     std::get<1>(m_tax_rate));
+        y->set_return_on_capital(std::get<1>(m_return_on_capital_avarage)); 
+        y->set_debt_issuance(m_debt_issuence_profile);
+        y->set_debt_repayment(m_debt_repayment_profile);
+        y->set_paid_in_capital(m_paid_in_capital_profile);                   
+        y->set_capital_distribution(m_capital_distribution_profile);
+        years.push_back(y);
+    }
+
+    return years;
 }
 
 

@@ -7,7 +7,7 @@
 FiscalYear::FiscalYear(double interest_rate, double tax_rate):
      m_interest_rate{interest_rate}, m_tax_rate{tax_rate} {}
 	
-void FiscalYear::set_earnings(double return_on_capital)
+void FiscalYear::set_return_on_capital(double return_on_capital)
 {
     // Making sure earnings are at the beginning - mainly to reflect last years assets vs. current year 
     m_asset_flows.insert(m_asset_flows.begin(),
