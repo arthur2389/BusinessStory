@@ -12,7 +12,7 @@ TimePeriod::FIELD_STATUS TimePeriod::set_num_of_years(const std::string& number_
     if (status != VALID) return status;
 
     // ToDo solve the int issue
-    m_debt_interest_rate = std::make_tuple(number_of_years, int(value));
+    m_num_years_in_period = std::make_tuple(number_of_years, int(value));
     return status;
 }
 

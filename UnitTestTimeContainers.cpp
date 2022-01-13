@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 	{
 		years[i]->go_through(comp_A);
 		std::cout << "Company A has " << comp_A.get_equity() << \
-		" In equity and " << comp_A.get_debt() << " In debt after the " << i << "th year" << std::endl;
+		" In equity and " << comp_A.get_debt() << " In debt after the " << i + 1 << "th year" << std::endl;
 	}
 
 	return 0;

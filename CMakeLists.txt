@@ -5,7 +5,8 @@ if (BUILD_EXEC STREQUAL UnitTestAccounting OR BUILD_EXEC STREQUAL UnitTestTimeCo
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-include_directories(src/accounting src/time_containers)
+include_directories(src/accounting)
+include_directories(src/time_containers)
 add_subdirectory(src/accounting)
 add_subdirectory(src/time_containers)
 
@@ -22,5 +23,5 @@ if (BUILD_EXEC STREQUAL UnitTestTimeContainers)
     add_executable(UnitTestTimeContainers UnitTestTimeContainers.cpp)
     set_target_properties(UnitTestTimeContainers PROPERTIES DEBUG_POSTFIX _debug)
     target_link_libraries(UnitTestTimeContainers PUBLIC accounting_lib)
-    target_link_libraries(UnitTestTimeContainers PUBLIC time_containers)
+    target_link_libraries(UnitTestTimeContainers PUBLIC time_containers_lib)
 endif()
