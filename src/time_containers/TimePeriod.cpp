@@ -4,6 +4,20 @@
 
 #include "TimePeriod.h"  
 
+TimePeriod::TimePeriod()
+{
+    m_tax_rate =\
+    m_debt_interest_rate =\
+    m_num_years_in_period =\
+    m_return_on_capital_avarage =\
+    m_return_on_capital_std_deviation = std::make_pair("", 0);
+
+    m_capital_distribution_profile =\
+    m_debt_issuence_profile =\
+    m_debt_repayment_profile =\
+    m_paid_in_capital_profile = std::make_pair("None", PROFILE::P_NONE);
+}
+
 TimePeriod::FIELD_STATUS TimePeriod::set_num_of_years(const std::string& number_of_years)
 {
     TimePeriod::FIELD_STATUS status; 
@@ -12,7 +26,7 @@ TimePeriod::FIELD_STATUS TimePeriod::set_num_of_years(const std::string& number_
     if (status != VALID) return status;
 
     // ToDo solve the int issue
-    m_num_years_in_period = std::make_tuple(number_of_years, int(value));
+    m_num_years_in_period = std::make_pair(number_of_years, int(value));
     return status;
 }
 
@@ -23,7 +37,7 @@ TimePeriod::FIELD_STATUS TimePeriod::set_tax_rate(const std::string& tax_rate)
     std::tie(status, value) = convert_to_valid_numeric(tax_rate);
     if (status != VALID) return status;
 
-    m_tax_rate = std::make_tuple(tax_rate, value);
+    m_tax_rate = std::make_pair(tax_rate, value);
     return status;
 }
 
@@ -34,7 +48,7 @@ TimePeriod::FIELD_STATUS TimePeriod::set_debt_interest_rate(const std::string& d
     std::tie(status, value) = convert_to_valid_numeric(debt_interest_rate);
     if (status != VALID) return status;
 
-    m_debt_interest_rate = std::make_tuple(debt_interest_rate, value);
+    m_debt_interest_rate = std::make_pair(debt_interest_rate, value);
     return status;
 }
 
@@ -48,8 +62,8 @@ TimePeriod::FIELD_STATUS TimePeriod::set_return_on_capital(const std::string& ro
     std::tie(status_std_dev, value_std_dev) = convert_to_valid_numeric(roc_average);
     if (status_std_dev != VALID) return status_std_dev;
 
-    m_return_on_capital_avarage = std::make_tuple(roc_average, value_avg);
-    m_return_on_capital_std_deviation = std::make_tuple(roc_std_deviation, value_std_dev);
+    m_return_on_capital_avarage = std::make_pair(roc_average, value_avg);
+    m_return_on_capital_std_deviation = std::make_pair(roc_std_deviation, value_std_dev);
 
     return status_avg;
 }                                                           
@@ -101,9 +115,9 @@ std::vector<std::shared_ptr<FiscalYear>> TimePeriod::build_years()
 
     for (i = 0; i < std::get<1>(m_num_years_in_period); ++i)
     {
-        std::shared_ptr<FiscalYear> y = std::make_shared<FiscalYear>(std::get<1>(m_debt_interest_rate),
-                                                                     std::get<1>(m_tax_rate));
-        y->set_return_on_capital(std::get<1>(m_return_on_capital_avarage)); 
+        std::shared_ptr<FiscalYear> y = std::make_shared<FiscalYear>(m_debt_interest_rate.second,
+                                                                     m_tax_rate.second);
+        y->set_return_on_capital(m_return_on_capital_avarage.second); 
         y->set_debt_issuance(m_debt_issuence_profile.second);
         y->set_debt_repayment(m_debt_repayment_profile.second);
         y->set_paid_in_capital(m_paid_in_capital_profile.second);                   
