@@ -11,6 +11,7 @@
 #include <string>
 #include <tuple>
 #include "FiscalYear.h"
+#include "Types.h"
 
 static const std::string PROFILES[]{"None", "Low", "Medium", "High"};	
 // Taking advantage of the fact the all fiscal numbers are ammounts (positive)
@@ -67,9 +68,15 @@ class TimePeriod
 		std::tuple<std::string, std::vector<double>> m_retrun_on_capital_list{"", {UNDEFINED}};
 		std::tuple<std::string, double> m_return_on_capital_avarage{"", UNDEFINED};
 		std::tuple<std::string, double> m_return_on_capital_std_deviation{"", UNDEFINED};
-		std::string m_capital_distribution_profile{PROFILES[0]};
-		std::string m_debt_issuence_profile{PROFILES[0]};
-		std::string m_debt_repayment_profile{PROFILES[0]};
-		std::string m_paid_in_capital_profile{PROFILES[0]};
+		std::pair<std::string, PROFILE> m_capital_distribution_profile{PROFILES[0], PROFILE::P_NONE};
+		std::pair<std::string, PROFILE> m_debt_issuence_profile{PROFILES[0], PROFILE::P_NONE};
+		std::pair<std::string, PROFILE> m_debt_repayment_profile{PROFILES[0], PROFILE::P_NONE};
+		std::pair<std::string, PROFILE> m_paid_in_capital_profile{PROFILES[0], PROFILE::P_NONE};
+
+		std::map<std::string, PROFILE> m_profile_conversion =
+			 {{"None",   PROFILE::P_NONE},
+			  {"Low",    PROFILE::P_LOW}, 
+			  {"Medium", PROFILE::P_MEDIUM}, 
+			  {"High",   PROFILE::P_HIGH}}; 
 };
 #endif

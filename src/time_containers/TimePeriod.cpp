@@ -59,7 +59,8 @@ TimePeriod::FIELD_STATUS TimePeriod::set_capital_distribution_profile(const std:
     TimePeriod::FIELD_STATUS status = assert_profile_name(capital_distribution_profile);
     if (status != VALID) return status;
 
-    m_capital_distribution_profile = capital_distribution_profile;
+    m_capital_distribution_profile = std::make_pair(capital_distribution_profile, 
+                                                    m_profile_conversion[capital_distribution_profile]);
     return status;
 }
 
@@ -68,7 +69,8 @@ TimePeriod::FIELD_STATUS TimePeriod::set_debt_issuance_profile(const std::string
     TimePeriod::FIELD_STATUS status = assert_profile_name(debt_issuance_profile);
     if (status != VALID) return status;
 
-    m_debt_issuence_profile = debt_issuance_profile;
+    m_debt_issuence_profile = std::make_pair(debt_issuance_profile, 
+                                             m_profile_conversion[debt_issuance_profile]);
     return status;
 }
 
@@ -77,7 +79,8 @@ TimePeriod::FIELD_STATUS TimePeriod::set_debt_repayment_profile(const std::strin
     TimePeriod::FIELD_STATUS status = assert_profile_name(debt_repayment_profile);
     if (status != VALID) return status;
 
-    m_debt_repayment_profile = debt_repayment_profile;
+    m_debt_repayment_profile = std::make_pair(debt_repayment_profile, 
+                                              m_profile_conversion[debt_repayment_profile]);
     return status;
 }
 
@@ -86,7 +89,8 @@ TimePeriod::FIELD_STATUS TimePeriod::set_paid_in_capital_profile(const std::stri
     TimePeriod::FIELD_STATUS status = assert_profile_name(paid_in_capital_profile);
     if (status != VALID) return status;
 
-    m_paid_in_capital_profile = paid_in_capital_profile;
+    m_paid_in_capital_profile = std::make_pair(paid_in_capital_profile, 
+                                               m_profile_conversion[paid_in_capital_profile]);
     return status;
 }
 
@@ -100,10 +104,10 @@ std::vector<std::shared_ptr<FiscalYear>> TimePeriod::build_years()
         std::shared_ptr<FiscalYear> y = std::make_shared<FiscalYear>(std::get<1>(m_debt_interest_rate),
                                                                      std::get<1>(m_tax_rate));
         y->set_return_on_capital(std::get<1>(m_return_on_capital_avarage)); 
-        y->set_debt_issuance(m_debt_issuence_profile);
-        y->set_debt_repayment(m_debt_repayment_profile);
-        y->set_paid_in_capital(m_paid_in_capital_profile);                   
-        y->set_capital_distribution(m_capital_distribution_profile);
+        y->set_debt_issuance(m_debt_issuence_profile.second);
+        y->set_debt_repayment(m_debt_repayment_profile.second);
+        y->set_paid_in_capital(m_paid_in_capital_profile.second);                   
+        y->set_capital_distribution(m_capital_distribution_profile.second);
         years.push_back(y);
     }
 

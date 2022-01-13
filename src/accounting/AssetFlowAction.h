@@ -7,17 +7,12 @@
 #pragma once
 
 #include "Assets.h"
+#include "Types.h"
 #include <map>
 
 class AssetFlowAction
 {
 public:
-
-    enum PROFILE {
-        P_LOW = 1,
-        P_MEDIUM = 2,
-        P_HIGH = 3
-    };
 
     AssetFlowAction(PROFILE profile);
     AssetFlowAction();
