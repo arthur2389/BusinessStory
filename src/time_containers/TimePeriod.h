@@ -31,36 +31,35 @@ class TimePeriod
 		~TimePeriod() {}
 
 		// Setters 
-		FIELD_STATUS set_tax_rate(std::string& tax_rate);
-		FIELD_STATUS set_debt_interest_rate(std::string& debt_interest_rate);
-		FIELD_STATUS set_return_on_capital(std::string& roc_list) {};
-		FIELD_STATUS set_return_on_capital(std::string& roc_average,
-								           std::string& roc_std_deviation);
-		FIELD_STATUS set_num_of_years(std::string&num_of_years);
-		FIELD_STATUS set_capital_distribution_profile(std::string& capital_distribution_profile);
-		FIELD_STATUS set_debt_issuance_profile(std::string& debt_issuance_profile);
-		FIELD_STATUS set_debt_repayment_profile(std::string& debt_repayment_profile);
-		FIELD_STATUS set_paid_in_capital_profile(std::string& paid_in_capital_profile);
+		FIELD_STATUS set_num_of_years(const std::string&num_of_years);
+		FIELD_STATUS set_tax_rate(const std::string& tax_rate);
+		FIELD_STATUS set_debt_interest_rate(const std::string& debt_interest_rate);
+		FIELD_STATUS set_return_on_capital(const std::string& roc_list) {return VALID;};
+		FIELD_STATUS set_return_on_capital(const std::string& roc_average,
+								           const std::string& roc_std_deviation);
+		FIELD_STATUS set_capital_distribution_profile(const std::string& capital_distribution_profile);
+		FIELD_STATUS set_debt_issuance_profile(const std::string& debt_issuance_profile);
+		FIELD_STATUS set_debt_repayment_profile(const std::string& debt_repayment_profile);
+		FIELD_STATUS set_paid_in_capital_profile(const std::string& paid_in_capital_profile);
 
 		// Getters
 		// ToDo implement getters
-		std::string& get_tax_rate();
-		std::string& get_debt_interest_rate();
-		std::string& get_return_on_capital_list() {};
-		std::string& get_return_on_capital_avarage();
-		std::string& get_return_on_capital_std_deviation();
-		std::string& get_capital_distribution_profile();
-		std::string& get_debt_issuance_profile();
-		std::string& get_debt_repayment_profile();
-		std::string& get_paid_in_capital_profile();
+		std::string& get_tax_rate() const;
+		std::string& get_debt_interest_rate() const;
+		std::string& get_return_on_capital_avarage() const;
+		std::string& get_return_on_capital_std_deviation() const;
+		std::string& get_capital_distribution_profile() const;
+		std::string& get_debt_issuance_profile() const;
+		std::string& get_debt_repayment_profile() const;
+		std::string& get_paid_in_capital_profile() const;
 
 		std::vector<std::shared_ptr<FiscalYear>> build_years();
 
 	private:
 		bool is_defined(std::tuple<std::string, double> field);
-		std::tuple<FIELD_STATUS, double> convert_to_valid_numeric(std::string& as_string);
+		std::tuple<FIELD_STATUS, double> convert_to_valid_numeric(const std::string& as_string);
 		// ToDo implement function
-		FIELD_STATUS assest_profile_name(std::string& pname) {return VALID};
+		FIELD_STATUS assert_profile_name(const std::string& pname) {return VALID;};
 
 		std::tuple<std::string, double> m_tax_rate{"", UNDEFINED};
 		std::tuple<std::string, double> m_debt_interest_rate{"", UNDEFINED};

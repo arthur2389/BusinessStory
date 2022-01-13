@@ -63,7 +63,6 @@ int main(int argc, char **argv)
 
 	std::cout << "Company A has " << comp_A.get_equity() << \
 		" In equity and " << comp_A.get_debt() << " In debt after second year" << std::endl;
-	std::cout << "Company A earnings after at the end of the period: " << comp_A.get_latest_earnings() << std::endl;
 	std::cout << "Company A total assets after at the end of the period: " << comp_A.total_assests() << std::endl;
 
 	return 0;
