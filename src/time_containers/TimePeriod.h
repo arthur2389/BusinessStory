@@ -11,6 +11,7 @@
 #include <string>
 #include <tuple>
 #include "FiscalYear.h"
+#include "Types.h"
 
 static const std::string PROFILES[]{"None", "Low", "Medium", "High"};	
 // Taking advantage of the fact the all fiscal numbers are ammounts (positive)
@@ -27,8 +28,7 @@ class TimePeriod
 			BAD_PROFILE_NAME = 3								
 		};
 
-		TimePeriod() {}
-		~TimePeriod() {}
+		TimePeriod();
 
 		// Setters 
 		FIELD_STATUS set_num_of_years(const std::string&num_of_years);
@@ -60,16 +60,22 @@ class TimePeriod
 		std::tuple<FIELD_STATUS, double> convert_to_valid_numeric(const std::string& as_string);
 		// ToDo implement function
 		FIELD_STATUS assert_profile_name(const std::string& pname) {return VALID;};
+		std::map<std::string, PROFILE> m_profile_conversion =
+			 {{"None",   PROFILE::P_NONE},
+			  {"Low",    PROFILE::P_LOW}, 
+			  {"Medium", PROFILE::P_MEDIUM}, 
+			  {"High",   PROFILE::P_HIGH}}; 
 
-		std::tuple<std::string, double> m_tax_rate{"", UNDEFINED};
-		std::tuple<std::string, double> m_debt_interest_rate{"", UNDEFINED};
-		std::tuple<std::string, int> m_num_years_in_period{"", UNDEFINED};
-		std::tuple<std::string, std::vector<double>> m_retrun_on_capital_list{"", {UNDEFINED}};
-		std::tuple<std::string, double> m_return_on_capital_avarage{"", UNDEFINED};
-		std::tuple<std::string, double> m_return_on_capital_std_deviation{"", UNDEFINED};
-		std::string m_capital_distribution_profile{PROFILES[0]};
-		std::string m_debt_issuence_profile{PROFILES[0]};
-		std::string m_debt_repayment_profile{PROFILES[0]};
-		std::string m_paid_in_capital_profile{PROFILES[0]};
+		std::pair<std::string, double> m_tax_rate;
+		std::pair<std::string, double> m_debt_interest_rate;
+		std::pair<std::string, int> m_num_years_in_period;
+		std::pair<std::string, std::vector<double>> m_retrun_on_capital_list;
+		std::pair<std::string, double> m_return_on_capital_avarage;
+		std::pair<std::string, double> m_return_on_capital_std_deviation;
+		std::pair<std::string, PROFILE> m_capital_distribution_profile;
+		std::pair<std::string, PROFILE> m_debt_issuence_profile;
+		std::pair<std::string, PROFILE> m_debt_repayment_profile;
+		std::pair<std::string, PROFILE> m_paid_in_capital_profile;
+
 };
 #endif

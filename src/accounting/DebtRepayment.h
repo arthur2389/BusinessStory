@@ -17,12 +17,12 @@ class DebtRepayment : public AssetFlowAction
 		virtual void update_assets(Assets& assets) override;
 
 	private:
-		std::map<AssetFlowAction::PROFILE, double> m_paid_out_of_total_debt = {{P_LOW,    8.0},
-				 						                                       {P_MEDIUM, 12.0},
-    								  				                           {P_HIGH,   25.0}};
-		std::map<AssetFlowAction::PROFILE, double> m_paid_out_of_equity = {{P_LOW,    15.0},
-				 						                                   {P_MEDIUM, 20.0},
-    								  				                       {P_HIGH,   30.0}};
+		std::map<PROFILE, double> m_paid_out_of_total_debt = {{PROFILE::P_LOW,    8.0},
+														      {PROFILE::P_MEDIUM, 12.0},
+															  {PROFILE::P_HIGH,   25.0}};
+		std::map<PROFILE, double> m_paid_out_of_equity = {{PROFILE::P_LOW,    15.0},
+														  {PROFILE::P_MEDIUM, 20.0},
+														  {PROFILE::P_HIGH,   30.0}};
 };
 
 #endif

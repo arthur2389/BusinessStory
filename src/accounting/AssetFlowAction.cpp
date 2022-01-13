@@ -6,7 +6,7 @@
 
 AssetFlowAction::AssetFlowAction() {}
 
-AssetFlowAction::AssetFlowAction(AssetFlowAction::PROFILE profile): m_profile{profile} {}
+AssetFlowAction::AssetFlowAction(PROFILE profile): m_profile{profile} {}
 
 int AssetFlowAction::get_order() const
 {

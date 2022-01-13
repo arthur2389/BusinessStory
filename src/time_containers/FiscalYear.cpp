@@ -14,32 +14,32 @@ void FiscalYear::set_return_on_capital(double return_on_capital)
      std::make_unique<Earnings>(return_on_capital, m_interest_rate, m_tax_rate));
 }
 
-void FiscalYear::set_debt_issuance(std::string& profile)
+void FiscalYear::set_debt_issuance(PROFILE profile)
 {
-    if (profile == "None")
+    if (profile == PROFILE::P_NONE)
         return;
-    m_asset_flows.push_back(std::make_unique<DebtIssuance>(m_profile_conversion[profile]));
+    m_asset_flows.push_back(std::make_unique<DebtIssuance>(profile));
 }
 
-void FiscalYear::set_paid_in_capital(std::string& profile)
+void FiscalYear::set_paid_in_capital(PROFILE profile)
 {
-    if (profile == "None")    
+    if (profile == PROFILE::P_NONE)
         return;
-    m_asset_flows.push_back(std::make_unique<PaidInCapital>(m_profile_conversion[profile]));
+    m_asset_flows.push_back(std::make_unique<PaidInCapital>(profile));
 }
 
-void FiscalYear::set_debt_repayment(std::string& profile)
+void FiscalYear::set_debt_repayment(PROFILE profile)
 {
-    if (profile == "None")    
+    if (profile == PROFILE::P_NONE)
         return;
-    m_asset_flows.push_back(std::make_unique<DebtRepayment>(m_profile_conversion[profile]));
+    m_asset_flows.push_back(std::make_unique<DebtRepayment>(profile));
 }
 
-void FiscalYear::set_capital_distribution(std::string& profile)
+void FiscalYear::set_capital_distribution(PROFILE profile)
 {
-    if (profile == "None")    
+    if (profile == PROFILE::P_NONE)
         return;
-    m_asset_flows.push_back(std::make_unique<CapitalDistribution>(m_profile_conversion[profile]));
+    m_asset_flows.push_back(std::make_unique<CapitalDistribution>(profile));
 }
 
 void FiscalYear::go_through(Assets& assets)

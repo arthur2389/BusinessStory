@@ -7,6 +7,7 @@ endif()
 
 include_directories(src/accounting)
 include_directories(src/time_containers)
+include_directories(src)
 add_subdirectory(src/accounting)
 add_subdirectory(src/time_containers)
 
