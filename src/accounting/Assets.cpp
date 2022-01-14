@@ -24,11 +24,6 @@ double Assets::total_assests() const
     return m_total_assets;
 }
 
-double Assets::equity_to_debt_ratio() const 
-{
-    return m_equity / m_debt;
-}
-
 double Assets::add_equity(double add_to_equity)
 {
     m_equity += add_to_equity;

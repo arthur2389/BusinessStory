@@ -4,3 +4,4 @@ TimePeriod.cpp
 )
 
 target_link_libraries(time_containers_lib PUBLIC accounting_lib)
+target_link_libraries(time_containers_lib PUBLIC math_services_lib)

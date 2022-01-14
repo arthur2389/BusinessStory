@@ -3,6 +3,7 @@
 // https://github.com/arthur2389/BusinessStory
 
 #include "TimePeriod.h"  
+#include "MathServices.h"
 
 TimePeriod::TimePeriod()
 {
@@ -63,6 +64,17 @@ TimePeriod::FIELD_STATUS TimePeriod::set_return_on_capital_average(const std::st
     return status;
 }                                                           
 
+TimePeriod::FIELD_STATUS TimePeriod::set_return_on_capital_range(const std::string& roc_range)
+{
+    TimePeriod::FIELD_STATUS status; 
+    double value;  
+    std::tie(status, value) = convert_to_valid_numeric(roc_range);
+    if (status != VALID) return status;
+
+    m_return_on_capital_range = std::make_pair(roc_range, value);
+    return status;
+}  
+
 TimePeriod::FIELD_STATUS TimePeriod::set_capital_distribution_profile(const std::string& capital_distribution_profile)
 {
     TimePeriod::FIELD_STATUS status = assert_profile_name(capital_distribution_profile);
@@ -106,13 +118,14 @@ TimePeriod::FIELD_STATUS TimePeriod::set_paid_in_capital_profile(const std::stri
 std::vector<std::shared_ptr<FiscalYear>> TimePeriod::build_years()
 {
     std::vector<std::shared_ptr<FiscalYear>> years;
-    int i;
-
-    for (i = 0; i < std::get<1>(m_num_years_in_period); ++i)
+    std::vector<double> roc_values = MathServices::get_rands_in_range(m_return_on_capital_average.second, 
+                                                                      m_return_on_capital_range.second, 
+                                                                      m_num_years_in_period.second);
+    for (int i = 0; i < m_num_years_in_period.second; ++i)
     {
         std::shared_ptr<FiscalYear> y = std::make_shared<FiscalYear>(m_debt_interest_rate.second,
                                                                      m_tax_rate.second);
-        y->set_return_on_capital(m_return_on_capital_avarage.second); 
+        y->set_return_on_capital(m_return_on_capital_average.second); 
         y->set_debt_issuance(m_debt_issuence_profile.second);
         y->set_debt_repayment(m_debt_repayment_profile.second);
         y->set_paid_in_capital(m_paid_in_capital_profile.second);                   
@@ -122,7 +135,6 @@ std::vector<std::shared_ptr<FiscalYear>> TimePeriod::build_years()
 
     return years;
 }
-
 
 std::tuple<TimePeriod::FIELD_STATUS, double> TimePeriod::convert_to_valid_numeric(const std::string& as_string)
 {

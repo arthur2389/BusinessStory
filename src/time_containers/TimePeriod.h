@@ -46,7 +46,7 @@ class TimePeriod
 		// ToDo implement getters
 		std::string& get_tax_rate() const;
 		std::string& get_debt_interest_rate() const;
-		std::string& get_return_on_capital_avarage() const;
+		std::string& get_return_on_capital_average() const;
 		std::string& get_return_on_capital_range() const;
 		std::string& get_capital_distribution_profile() const;
 		std::string& get_debt_issuance_profile() const;
@@ -70,7 +70,7 @@ class TimePeriod
 		std::pair<std::string, double> m_debt_interest_rate;
 		std::pair<std::string, int> m_num_years_in_period;
 		std::pair<std::string, std::vector<double>> m_retrun_on_capital_list;
-		std::pair<std::string, double> m_return_on_capital_avarage;
+		std::pair<std::string, double> m_return_on_capital_average;
 		std::pair<std::string, double> m_return_on_capital_range;
 		std::pair<std::string, PROFILE> m_capital_distribution_profile;
 		std::pair<std::string, PROFILE> m_debt_issuence_profile;

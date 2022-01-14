@@ -17,7 +17,6 @@ public:
     double get_equity() const;
     double get_debt() const;
     double total_assests() const;
-    double equity_to_debt_ratio() const;
 
     double add_equity(double add_to_equity);
     double add_debt(double add_to_debt);

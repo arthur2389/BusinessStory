@@ -13,6 +13,7 @@ class DebtRepayment : public AssetFlowAction
 {
 
 	public:
+		// ToDo - insert period initial debt 
 		DebtRepayment(PROFILE profile);
 		virtual void update_assets(Assets& assets, year_10k& y10k) override;
 
