@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	early_years.set_num_of_years("3");
 	early_years.set_tax_rate("18");
 	early_years.set_debt_interest_rate("2");
-	early_years.set_return_on_capital_average("3");
+	early_years.set_return_on_capital_average("ff3");
 	early_years.set_return_on_capital_range("10");
 	early_years.set_debt_issuance_profile("High");
 	early_years.set_paid_in_capital_profile("Medium");

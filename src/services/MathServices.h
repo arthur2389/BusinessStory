@@ -8,7 +8,7 @@
 class MathServices  
 {
 	public:
-		static std::vector<double> get_rands_in_range(double average, double range, int size);
+		static std::vector<double> get_rands_with_average(double average, double range, int size);
 
 };
 #endif

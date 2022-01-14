@@ -1,6 +1,6 @@
 #include "MathServices.h"  
 	
-std::vector<double> MathServices::get_rands_in_range(double average, double range, int size)
+std::vector<double> MathServices::get_rands_with_average(double average, double range, int size)
 {
     std::vector<double> nums_in_range;
     std::random_device rd; 
