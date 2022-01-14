@@ -14,7 +14,7 @@ class DebtIssuance : public AssetFlowAction
 {
 	public:
 		DebtIssuance(PROFILE); 
-		virtual void update_assets(Assets& assets) override;
+		virtual void update_assets(Assets& assets, year_10k& y10k) override;
 
 	private:
 		std::map<PROFILE, double> m_debt_of_equity = {{PROFILE::P_LOW,    15.0},

@@ -6,7 +6,9 @@
 	
 DebtIssuance::DebtIssuance(PROFILE profile): AssetFlowAction{profile} {}
 
-void DebtIssuance::update_assets(Assets& assets)
+void DebtIssuance::update_assets(Assets& assets, year_10k& y10k)
 {
-    assets.add_debt(percent_of(assets.get_equity(), m_debt_of_equity[m_profile]));
+    double debt_issuance = percent_of(assets.get_equity(), m_debt_of_equity[m_profile]);
+    assets.add_debt(debt_issuance);
+    y10k.debt_issuance = debt_issuance;
 }

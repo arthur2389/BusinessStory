@@ -42,13 +42,18 @@ void FiscalYear::set_capital_distribution(PROFILE profile)
     m_asset_flows.push_back(std::make_unique<CapitalDistribution>(profile));
 }
 
+year_10k& FiscalYear::get_year_10k()
+{
+    return m_year_10k;
+}
+
 void FiscalYear::go_through(Assets& assets)
 {
     for (auto& af: m_asset_flows)
     {
         // ToDo push this for update as well
-        af->update_assets(assets);
-        m_year_10k.equity = assets.get_equity();
-        m_year_10k.debt = assets.get_debt();
+        af->update_assets(assets, m_year_10k);
+        m_year_10k.end_of_year_equity = assets.get_equity();
+        m_year_10k.end_of_year_debt = assets.get_debt();
     }
 }

@@ -33,9 +33,19 @@ int main(int argc, char **argv)
 
 	for (i = 0; i < years.size(); ++i)
 	{
-		years[i]->go_through(comp_A);
-		std::cout << "Company A has " << comp_A.get_equity() << \
-		" In equity and " << comp_A.get_debt() << " In debt after the " << i + 1 << "th year" << std::endl;
+		std::shared_ptr<FiscalYear> y = years[i];
+		y->go_through(comp_A);
+		year_10k y10k = y->get_year_10k();
+
+		std::cout << "Company A year " << i << " results" << std::endl <<\
+		"Earnings before interent and tax: " << y10k.ebit << std::endl <<\ 
+		"Net earnings: " << y10k.earnings << std::endl <<\ 
+		"Additional paid in capital: " << y10k.paid_in_capital << std::endl <<\
+		"Debt issuance: " << y10k.debt_issuance << std::endl <<\ 
+		"Debt repayment: " << y10k.debt_repayment << std::endl <<\ 
+		"Capital distribution to shareholders: " << y10k.capital_distribution << std::endl <<\
+		"End of year total shareholders equity: " << y10k.end_of_year_equity << std::endl <<\ 
+		"End of year total debt: " << y10k.end_of_year_debt << std::endl;
 	}
 
 	return 0;

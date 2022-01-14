@@ -13,4 +13,16 @@ enum class PROFILE {
     P_HIGH
 };
 
+struct year_10k
+{
+    double end_of_year_equity;
+    double end_of_year_debt;
+    double ebit;
+    double earnings;
+    double paid_in_capital;
+    double debt_issuance;
+    double debt_repayment;
+    double capital_distribution;
+};
+
 #endif

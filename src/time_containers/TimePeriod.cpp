@@ -10,7 +10,7 @@ TimePeriod::TimePeriod()
     m_debt_interest_rate =\
     m_num_years_in_period =\
     m_return_on_capital_avarage =\
-    m_return_on_capital_std_deviation = std::make_pair("", 0);
+    m_return_on_capital_range = std::make_pair("", 0);
 
     m_capital_distribution_profile =\
     m_debt_issuence_profile =\
@@ -52,20 +52,15 @@ TimePeriod::FIELD_STATUS TimePeriod::set_debt_interest_rate(const std::string& d
     return status;
 }
 
-TimePeriod::FIELD_STATUS TimePeriod::set_return_on_capital(const std::string& roc_average,
-								                           const std::string& roc_std_deviation)
+TimePeriod::FIELD_STATUS TimePeriod::set_return_on_capital_average(const std::string& roc_average)
 {
-    TimePeriod::FIELD_STATUS status_avg, status_std_dev; 
-    double value_avg, value_std_dev;    
-    std::tie(status_avg, value_avg) = convert_to_valid_numeric(roc_average);
-    if (status_avg != VALID) return status_avg;
-    std::tie(status_std_dev, value_std_dev) = convert_to_valid_numeric(roc_average);
-    if (status_std_dev != VALID) return status_std_dev;
+    TimePeriod::FIELD_STATUS status; 
+    double value;  
+    std::tie(status, value) = convert_to_valid_numeric(roc_average);
+    if (status != VALID) return status;
 
-    m_return_on_capital_avarage = std::make_pair(roc_average, value_avg);
-    m_return_on_capital_std_deviation = std::make_pair(roc_std_deviation, value_std_dev);
-
-    return status_avg;
+    m_return_on_capital_avarage = std::make_pair(roc_average, value);
+    return status;
 }                                                           
 
 TimePeriod::FIELD_STATUS TimePeriod::set_capital_distribution_profile(const std::string& capital_distribution_profile)
