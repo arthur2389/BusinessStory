@@ -17,102 +17,67 @@ TimePeriod::TimePeriod()
     m_debt_issuence_profile =\
     m_debt_repayment_profile =\
     m_paid_in_capital_profile = std::make_pair("None", PROFILE::P_NONE);
+
+    for (const auto& profile_pair: m_profile_conversion)
+        m_profile_names.push_back(profile_pair.first);
 }
 
-TimePeriod::FIELD_STATUS TimePeriod::set_num_of_years(const std::string& number_of_years)
+void TimePeriod::set_num_of_years(const std::string& number_of_years)
 {
-    TimePeriod::FIELD_STATUS status; 
-    double value;
-    std::tie(status, value) = convert_to_valid_numeric(number_of_years);
-    if (status != VALID) return status;
-
-    // ToDo solve the int issue
-    m_num_years_in_period = std::make_pair(number_of_years, int(value));
-    return status;
+    double value = convert_to_valid_numeric(number_of_years, "Number of years");
+    m_num_years_in_period = std::make_pair(number_of_years, static_cast<int>(value));
 }
 
-TimePeriod::FIELD_STATUS TimePeriod::set_tax_rate(const std::string& tax_rate)
+void TimePeriod::set_tax_rate(const std::string& tax_rate)
 {
-    TimePeriod::FIELD_STATUS status; 
-    double value;
-    std::tie(status, value) = convert_to_valid_numeric(tax_rate);
-    if (status != VALID) return status;
-
-    m_tax_rate = std::make_pair(tax_rate, value);
-    return status;
+   double value = convert_to_valid_numeric(tax_rate, "Tax rate");
+   m_tax_rate = std::make_pair(tax_rate, value);
 }
 
-TimePeriod::FIELD_STATUS TimePeriod::set_debt_interest_rate(const std::string& debt_interest_rate)
+void TimePeriod::set_debt_interest_rate(const std::string& debt_interest_rate)
 {
-    TimePeriod::FIELD_STATUS status; 
-    double value;
-    std::tie(status, value) = convert_to_valid_numeric(debt_interest_rate);
-    if (status != VALID) return status;
-
+    double value = convert_to_valid_numeric(debt_interest_rate, "Debt interest rate");
     m_debt_interest_rate = std::make_pair(debt_interest_rate, value);
-    return status;
 }
 
-TimePeriod::FIELD_STATUS TimePeriod::set_return_on_capital_average(const std::string& roc_average)
+void TimePeriod::set_return_on_capital_average(const std::string& roc_average)
 {
-    TimePeriod::FIELD_STATUS status; 
-    double value;  
-    std::tie(status, value) = convert_to_valid_numeric(roc_average);
-    if (status != VALID) return status;
-
+    double value = convert_to_valid_numeric(roc_average, "Return on capital average");
     m_return_on_capital_average = std::make_pair(roc_average, value);
-    return status;
 }                                                           
 
-TimePeriod::FIELD_STATUS TimePeriod::set_return_on_capital_range(const std::string& roc_range)
+void TimePeriod::set_return_on_capital_range(const std::string& roc_range)
 {
-    TimePeriod::FIELD_STATUS status; 
-    double value;  
-    std::tie(status, value) = convert_to_valid_numeric(roc_range);
-    if (status != VALID) return status;
-
+    double value = convert_to_valid_numeric(roc_range, "Return on capital range");
     m_return_on_capital_range = std::make_pair(roc_range, value);
-    return status;
 }  
 
-TimePeriod::FIELD_STATUS TimePeriod::set_capital_distribution_profile(const std::string& capital_distribution_profile)
+void TimePeriod::set_capital_distribution_profile(const std::string& capital_distribution_profile)
 {
-    TimePeriod::FIELD_STATUS status = assert_profile_name(capital_distribution_profile);
-    if (status != VALID) return status;
-
+    assert_profile_name(capital_distribution_profile, "Capital distribution");
     m_capital_distribution_profile = std::make_pair(capital_distribution_profile, 
                                                     m_profile_conversion[capital_distribution_profile]);
-    return status;
 }
 
-TimePeriod::FIELD_STATUS TimePeriod::set_debt_issuance_profile(const std::string& debt_issuance_profile)
+void TimePeriod::set_debt_issuance_profile(const std::string& debt_issuance_profile)
 {
-    TimePeriod::FIELD_STATUS status = assert_profile_name(debt_issuance_profile);
-    if (status != VALID) return status;
-
+    assert_profile_name(debt_issuance_profile, "Debt issuance");
     m_debt_issuence_profile = std::make_pair(debt_issuance_profile, 
                                              m_profile_conversion[debt_issuance_profile]);
-    return status;
 }
 
-TimePeriod::FIELD_STATUS TimePeriod::set_debt_repayment_profile(const std::string& debt_repayment_profile)
+void TimePeriod::set_debt_repayment_profile(const std::string& debt_repayment_profile)
 {
-    TimePeriod::FIELD_STATUS status = assert_profile_name(debt_repayment_profile);
-    if (status != VALID) return status;
-
+    assert_profile_name(debt_repayment_profile, "Debt repayment");
     m_debt_repayment_profile = std::make_pair(debt_repayment_profile, 
                                               m_profile_conversion[debt_repayment_profile]);
-    return status;
 }
 
-TimePeriod::FIELD_STATUS TimePeriod::set_paid_in_capital_profile(const std::string& paid_in_capital_profile)
+void TimePeriod::set_paid_in_capital_profile(const std::string& paid_in_capital_profile)
 {
-    TimePeriod::FIELD_STATUS status = assert_profile_name(paid_in_capital_profile);
-    if (status != VALID) return status;
-
+    assert_profile_name(paid_in_capital_profile, "Paid in capital");
     m_paid_in_capital_profile = std::make_pair(paid_in_capital_profile, 
                                                m_profile_conversion[paid_in_capital_profile]);
-    return status;
 }
 
 std::vector<std::shared_ptr<FiscalYear>> TimePeriod::build_years()
@@ -136,7 +101,20 @@ std::vector<std::shared_ptr<FiscalYear>> TimePeriod::build_years()
     return years;
 }
 
-std::tuple<TimePeriod::FIELD_STATUS, double> TimePeriod::convert_to_valid_numeric(const std::string& as_string)
+double TimePeriod::convert_to_valid_numeric(const std::string& as_string, std::string field_name)
 {
-    return std::make_tuple(VALID, std::stod(as_string));
+    try {
+        return std::stod(as_string);
+    }
+    catch (const std::invalid_argument& iar)
+    {
+        throw InvalidUserParameter(as_string, field_name);
+    }        
+}
+
+void TimePeriod::assert_profile_name(const std::string& pname, std::string field_name)
+{
+    std::vector<std::string>::iterator i = find(m_profile_names.begin(), m_profile_names.end(), pname);
+    if (i == m_profile_names.end())
+        throw InvalidUserParameter(pname, field_name);
 }
