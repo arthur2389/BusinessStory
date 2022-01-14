@@ -17,7 +17,7 @@ public:
     AssetFlowAction(PROFILE profile);
     AssetFlowAction();
     virtual ~AssetFlowAction();
-    virtual void update_assets(Assets& assets)=0;
+    virtual void update_assets(Assets& assets, year_10k& y10k)=0;
     int get_order() const; 
 
 

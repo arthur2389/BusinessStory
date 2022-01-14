@@ -12,7 +12,7 @@ class PaidInCapital : public AssetFlowAction
 {
 	public:
 		PaidInCapital(PROFILE profile);
-		virtual void update_assets(Assets& assets) override;
+		virtual void update_assets(Assets& assets, year_10k& y10k) override;
 
 	private:
 		std::map<PROFILE, double> m_paid_in_of_total_assets = {{PROFILE::P_LOW,    2.0},

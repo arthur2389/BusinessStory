@@ -17,7 +17,7 @@ class Earnings: public AssetFlowAction
 		Earnings(double return_on_capital,
                  double debt_interest, 
                  double tax_perc);
-		virtual void update_assets(Assets& assets) override;
+		virtual void update_assets(Assets& assets, year_10k& y10k) override;
 
 	private:
 	    double m_return_on_capital;

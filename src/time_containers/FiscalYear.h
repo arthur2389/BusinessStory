@@ -24,13 +24,6 @@ class FiscalYear
 {
 	public:
 
-		struct year_10k
-		{
-			double equity;
-			double debt;
-			double earnings;
-		};
-
 		FiscalYear(double interest_rate, double tax_rate);
 		void set_return_on_capital(double return_on_capital);
 		void set_debt_issuance(PROFILE profile);

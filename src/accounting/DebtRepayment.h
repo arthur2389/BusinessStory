@@ -13,8 +13,9 @@ class DebtRepayment : public AssetFlowAction
 {
 
 	public:
+		// ToDo - insert period initial debt 
 		DebtRepayment(PROFILE profile);
-		virtual void update_assets(Assets& assets) override;
+		virtual void update_assets(Assets& assets, year_10k& y10k) override;
 
 	private:
 		std::map<PROFILE, double> m_paid_out_of_total_debt = {{PROFILE::P_LOW,    8.0},

@@ -34,9 +34,9 @@ class TimePeriod
 		FIELD_STATUS set_num_of_years(const std::string&num_of_years);
 		FIELD_STATUS set_tax_rate(const std::string& tax_rate);
 		FIELD_STATUS set_debt_interest_rate(const std::string& debt_interest_rate);
-		FIELD_STATUS set_return_on_capital(const std::string& roc_list) {return VALID;};
-		FIELD_STATUS set_return_on_capital(const std::string& roc_average,
-								           const std::string& roc_std_deviation);
+		FIELD_STATUS set_return_on_capital_list(const std::string& roc_list) {return VALID;};
+		FIELD_STATUS set_return_on_capital_average(const std::string& roc_average);
+		FIELD_STATUS set_return_on_capital_range(const std::string& roc_range);
 		FIELD_STATUS set_capital_distribution_profile(const std::string& capital_distribution_profile);
 		FIELD_STATUS set_debt_issuance_profile(const std::string& debt_issuance_profile);
 		FIELD_STATUS set_debt_repayment_profile(const std::string& debt_repayment_profile);
@@ -46,8 +46,8 @@ class TimePeriod
 		// ToDo implement getters
 		std::string& get_tax_rate() const;
 		std::string& get_debt_interest_rate() const;
-		std::string& get_return_on_capital_avarage() const;
-		std::string& get_return_on_capital_std_deviation() const;
+		std::string& get_return_on_capital_average() const;
+		std::string& get_return_on_capital_range() const;
 		std::string& get_capital_distribution_profile() const;
 		std::string& get_debt_issuance_profile() const;
 		std::string& get_debt_repayment_profile() const;
@@ -70,8 +70,8 @@ class TimePeriod
 		std::pair<std::string, double> m_debt_interest_rate;
 		std::pair<std::string, int> m_num_years_in_period;
 		std::pair<std::string, std::vector<double>> m_retrun_on_capital_list;
-		std::pair<std::string, double> m_return_on_capital_avarage;
-		std::pair<std::string, double> m_return_on_capital_std_deviation;
+		std::pair<std::string, double> m_return_on_capital_average;
+		std::pair<std::string, double> m_return_on_capital_range;
 		std::pair<std::string, PROFILE> m_capital_distribution_profile;
 		std::pair<std::string, PROFILE> m_debt_issuence_profile;
 		std::pair<std::string, PROFILE> m_debt_repayment_profile;
