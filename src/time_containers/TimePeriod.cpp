@@ -118,9 +118,9 @@ TimePeriod::FIELD_STATUS TimePeriod::set_paid_in_capital_profile(const std::stri
 std::vector<std::shared_ptr<FiscalYear>> TimePeriod::build_years()
 {
     std::vector<std::shared_ptr<FiscalYear>> years;
-    std::vector<double> roc_values = MathServices::get_rands_in_range(m_return_on_capital_average.second, 
-                                                                      m_return_on_capital_range.second, 
-                                                                      m_num_years_in_period.second);
+    std::vector<double> roc_values = MathServices::get_rands_with_average(m_return_on_capital_average.second, 
+                                                                          m_return_on_capital_range.second, 
+                                                                          m_num_years_in_period.second);
     for (int i = 0; i < m_num_years_in_period.second; ++i)
     {
         std::shared_ptr<FiscalYear> y = std::make_shared<FiscalYear>(m_debt_interest_rate.second,
