@@ -34,10 +34,13 @@ int main(int argc, char **argv)
 	mature_years.set_debt_repayment_profile("Low");
 
 	std::vector<std::shared_ptr<FiscalYear>>early_years_vec = early_years.build_years();
-	years.insert(years.begin(), early_years_vec.begin(), early_years_vec.end());
+	years.insert(years.end(), early_years_vec.begin(), early_years_vec.end());
+
+	std::vector<std::shared_ptr<FiscalYear>>mature_years_vec = mature_years.build_years();
+	years.insert(years.end(), mature_years_vec.begin(), mature_years_vec.end());
 
 	std::cout << "Company A has " << comp_A.get_equity() << \
-	" In equity and " << comp_A.get_debt() << " In debt initially" << std::endl;
+	" In equity and " << comp_A.get_debt() << " In debt initially" << std::endl << std::endl;
 
 	for (int i = 0; i < years.size(); ++i)
 	{
@@ -45,7 +48,7 @@ int main(int argc, char **argv)
 		y->go_through(comp_A);
 		year_10k y10k = y->get_year_10k();
 
-		std::cout << "Company A year " << i << " results" << std::endl <<\
+		std::cout << "Company A year " << i + 1 << " results" << std::endl <<\
 		"Earnings before interent and tax: " << y10k.ebit << std::endl <<\ 
 		"Net earnings: " << y10k.earnings << std::endl <<\ 
 		"Additional paid in capital: " << y10k.paid_in_capital << std::endl <<\
@@ -53,7 +56,7 @@ int main(int argc, char **argv)
 		"Debt repayment: " << y10k.debt_repayment << std::endl <<\ 
 		"Capital distribution to shareholders: " << y10k.capital_distribution << std::endl <<\
 		"End of year total shareholders equity: " << y10k.end_of_year_equity << std::endl <<\ 
-		"End of year total debt: " << y10k.end_of_year_debt << std::endl;
+		"End of year total debt: " << y10k.end_of_year_debt << std::endl << std::endl;
 	}
 
 	return 0;

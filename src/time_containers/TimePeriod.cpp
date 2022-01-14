@@ -10,7 +10,7 @@ TimePeriod::TimePeriod()
     m_tax_rate =\
     m_debt_interest_rate =\
     m_num_years_in_period =\
-    m_return_on_capital_avarage =\
+    m_return_on_capital_average =\
     m_return_on_capital_range = std::make_pair("", 0);
 
     m_capital_distribution_profile =\
@@ -60,7 +60,7 @@ TimePeriod::FIELD_STATUS TimePeriod::set_return_on_capital_average(const std::st
     std::tie(status, value) = convert_to_valid_numeric(roc_average);
     if (status != VALID) return status;
 
-    m_return_on_capital_avarage = std::make_pair(roc_average, value);
+    m_return_on_capital_average = std::make_pair(roc_average, value);
     return status;
 }                                                           
 
@@ -125,7 +125,7 @@ std::vector<std::shared_ptr<FiscalYear>> TimePeriod::build_years()
     {
         std::shared_ptr<FiscalYear> y = std::make_shared<FiscalYear>(m_debt_interest_rate.second,
                                                                      m_tax_rate.second);
-        y->set_return_on_capital(m_return_on_capital_average.second); 
+        y->set_return_on_capital(roc_values[i]); 
         y->set_debt_issuance(m_debt_issuence_profile.second);
         y->set_debt_repayment(m_debt_repayment_profile.second);
         y->set_paid_in_capital(m_paid_in_capital_profile.second);                   
