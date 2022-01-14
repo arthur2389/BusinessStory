@@ -14,6 +14,8 @@ std::vector<double> MathServices::get_rands_in_range(double average, double rang
 
     // Not a straightforward method here: Aligning the random numbers so it will fit the average
     // It can be inceremening or decrementing the vector values until aligned to given average
+    // Also mind that the range can be ocationaly violated here - this is not something that 
+    // will hurt the caller of the function by any means
     double delta_sum = average * size - std::accumulate(nums_in_range.begin(),
                                                         nums_in_range.end(),
                                                         0);
