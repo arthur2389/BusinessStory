@@ -7,10 +7,11 @@ endif()
 
 include_directories(src/accounting)
 include_directories(src/time_containers)
+include_directories(src/services)
 include_directories(src)
 add_subdirectory(src/accounting)
 add_subdirectory(src/time_containers)
-
+add_subdirectory(src/services)
 
 if (BUILD_EXEC STREQUAL UnitTestAccounting)
     message("Running cmake for accounting unit test")

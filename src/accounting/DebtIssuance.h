@@ -14,15 +14,11 @@ class DebtIssuance : public AssetFlowAction
 {
 	public:
 		DebtIssuance(PROFILE); 
-		virtual void update_assets(Assets& assets) override;
+		virtual void update_assets(Assets& assets, year_10k& y10k) override;
 
 	private:
-		std::map<PROFILE, double> m_debt_of_equity = {{PROFILE::P_LOW,    15.0},
-				 					                  {PROFILE::P_MEDIUM, 25.0},
-    								  			      {PROFILE::P_HIGH,   50.0}};
-
-		std::map<PROFILE, double> m_debt_of_curr_debt = {{PROFILE::P_LOW,    10.0},
-				 						                 {PROFILE::P_MEDIUM, 20.0},
-    								  			         {PROFILE::P_HIGH,   30.0}};
+		std::map<PROFILE, double> m_debt_of_assets = {{PROFILE::P_LOW,    5.0},
+				 					                  {PROFILE::P_MEDIUM, 20.0},
+    								  			      {PROFILE::P_HIGH,   35.0}};
 };
 #endif
