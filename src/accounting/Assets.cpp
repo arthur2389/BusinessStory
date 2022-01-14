@@ -4,36 +4,35 @@
 
 #include "Assets.h"
 
-Assets::Assets(double equity, double debt)
-    : m_equity{equity}, m_debt{debt}, m_total_assets{equity + debt} {}
+Assets::Assets(double assets, double debt)
+    : m_assets{assets}, m_debt{debt} {}
 
-Assets::Assets(Assets& source) : Assets{source.get_equity(), source.get_debt()} {}
-
-double Assets::get_equity() const
-{
-    return m_equity;
-}
+Assets::Assets(Assets& source) : Assets{source.get_assests(), source.get_debt()} {}
 
 double Assets::get_debt() const
 {
     return m_debt;
 }
 
-double Assets::total_assests() const 
+double Assets::get_assests() const 
 {
-    return m_total_assets;
+    return m_assets;
 }
 
-double Assets::add_equity(double add_to_equity)
+double Assets::get_equity() const
 {
-    m_equity += add_to_equity;
-    m_total_assets += add_to_equity;
-    return m_equity;
+    return m_assets - m_debt;
+}
+
+double Assets::add_assets(double add_to_assets)
+{
+    m_assets += add_to_assets;
+    return m_assets;
 }
 
 double Assets::add_debt(double add_to_debt)
 {
     m_debt += add_to_debt;
-    m_total_assets += add_to_debt;
+    add_assets(add_to_debt);
     return m_debt;
 }

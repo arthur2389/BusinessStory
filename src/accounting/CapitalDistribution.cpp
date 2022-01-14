@@ -9,6 +9,6 @@ CapitalDistribution::CapitalDistribution(PROFILE profile): AssetFlowAction{profi
 void CapitalDistribution::update_assets(Assets& assets, year_10k& y10k)
 {
     double capital_distribution = percent_of(assets.get_equity(), m_paid_of_equity[m_profile]);
-    assets.add_equity(-capital_distribution);
+    assets.add_assets(-capital_distribution);
     y10k.capital_distribution = capital_distribution;
 }

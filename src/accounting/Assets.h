@@ -14,21 +14,18 @@ public:
     Assets(double equity, double debt); 
     Assets(Assets& source);
 
+    double get_assests() const;
     double get_equity() const;
     double get_debt() const;
-    double total_assests() const;
 
-    double add_equity(double add_to_equity);
+    double add_assets(double add_to_assets);
     double add_debt(double add_to_debt);
     void update_latest_earnings(double latest_earnings);
 
 private:
 
-    double m_equity;
+    double m_assets;
     double m_debt;
-    double m_total_assets;
-    int m_num_of_shares{0};
-    int m_stock_price_to_earnings{10}; 
 };
 
 #endif // ASSESTS_H
