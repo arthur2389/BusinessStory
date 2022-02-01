@@ -34,8 +34,6 @@ class FiscalYear
 		void go_through(Assets& assets);
 		year_10k& get_year_10k(); 
 
-		~FiscalYear() {};
-
 	private:
 		std::vector<std::unique_ptr<AssetFlowAction>> m_asset_flows;
 		double m_interest_rate;
